@@ -34,6 +34,20 @@ include_once "../controlador/enrutamiento.php";
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="../seguridad/vista2.php">EVENTOS BUGA</a>
+                
+                <!-- MOSTRAR CUANDO INICIE SESION-->
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto my-2 my-lg-0">                      
+                        <li class="nav-item"><a class="nav-link" href="misEventos.php">Mis Eventos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../controlador/cerrarSesion.php">Cerrar Sesión</a></li>                        
+                    </ul>                     
+                </div>                
+            </div>
+            <a class="" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['nombreUsuario']; ?></span>
+                <img class="img-profile rounded-circle" width="80" height="80" src="<?php echo $_SESSION['foto']; ?>">
+            </a>
         </nav>
         <!-- FORMULARIO CREAR EVENTO-->
         <header class="masthead">
@@ -41,7 +55,7 @@ include_once "../controlador/enrutamiento.php";
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8 col-xl-6 text-center">
-                        <h2 class="mt-0">Crear Evento</h2>
+                        <h3 class="text-white font-weight-bold">Crear Evento</h3>
                         <hr class="divider" />
 
                     </div>
@@ -49,8 +63,8 @@ include_once "../controlador/enrutamiento.php";
                 <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
                     <div class="col-lg-6">
 
-                        <form action="../controlador/crearEventoControlador.php" method='post' data-sb-form-api-token="API_TOKEN">
-                       
+                        <form action="../controlador/crearEventoControlador.php" method='post' data-sb-form-api-token="API_TOKEN" enctype="multipart/form-data">
+
                             <!-- NOMBRE EVENTO-->
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="i1" name="c1" type="text" placeholder="Ingrese Nombre del Evento" data-sb-validations="required" />
@@ -72,9 +86,9 @@ include_once "../controlador/enrutamiento.php";
                                 <div class="invalid-feedback" data-sb-feedback="message:required">Ingrese fecha del evento</div>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="file" id="i4" name="c4"  >
-                                <label for="i4"></label>
-                               
+                                <label for=""></label>
+                                <input type="file" name="foto" id="" required>
+                                <p class="help-block">Suba una Imagen</p>
                             </div>
 
                             <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>

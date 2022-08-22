@@ -21,104 +21,88 @@ include_once "../controlador/enrutamiento.php";
         <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="../recursos/css/styles.css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="../recursos/estilos.css"
     </head>
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="vista2.php">EVENTOS BUGA</a>
-                <!-- LO NECESITO PARA MOSTRAR EL NOMBRE DEL USUARIO CUANDO INICIE SESION-->
-<!--                 Bienvenido: <a  href="logueo/perfil.php?id=<?= $_SESSION['usuario_id'] ?>"><strong><?= $_SESSION['usuario_nombre'] ?></strong></a><br />-->
+                
+                <!-- MOSTRAR CUANDO INICIE SESION-->
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">                        
                         <li class="nav-item"><a class="nav-link" href="../vista/crearEvento.php">Crear Evento</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#portfolio">Mis Eventos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../controlador/cerrarSesion.php">Cerrar Sesión</a></li>
-                    </ul>
-                </div>
+                        <li class="nav-item"><a class="nav-link" href="../vista/misEventos.php">Mis Eventos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../controlador/cerrarSesion.php">Cerrar Sesión</a></li>                        
+                    </ul>                     
+                </div>                
             </div>
+            <a class="" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['nombreUsuario']; ?></span>
+                <img class="img-profile rounded-circle" width="80" height="80" src="<?php echo $_SESSION['foto']; ?>">
+            </a>
         </nav>
         <!-- Masthead-->
         <header class="masthead">
-            <div class="container px-4 px-lg-5 h-100">
+            <div class="container px-4 px-lg-5 h-10">
                 <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                     <div class="col-lg-8 align-self-end">
-                        <h1 class="text-white font-weight-bold">PRUEBA</h1>
+                        <h3 class="text-white font-weight-bold">Eventos</h3>
                         <hr class="divider" />
                     </div>
                     <div class="col-lg-8 align-self-baseline">
-                        
+
                         <!-- PRUEBA DE COMO SE VEN LOS EVENTOS-->
-                       
-                                     <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>Nombre</th>                                              
-                                                <th>Imagen</th>
-                                               
+                 <table class="table table-bordered table-hover table-fixed" >
 
-                                            </tr>
-                                        </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Nombre</th>                                              
-                                                <th>Imagen</th>
-
-                                            </tr>
-                                        </tfoot>
-
-                                        <tbody>
-                                            <?php
-                                            include_once "docenteModelo.php";
-                                            $docenteModelo = new docenteModelo();
-                                            $result = $docenteModelo->mostrarTodos();
-                                            $contador = 0;
-                                            while ($fila = mysqli_fetch_array($result)) {
-
-                                                if ($fila != NULL) {
-                                                    $contador++;
+                            <thead>
+                                <tr style="width: 680px">
+                                    <th style="width: 150px">Imagen</th>                                              
+                                    <th style="width: 150px" >Evento</th>
+                                    <th style="width: 380px" >Descripción</th>
 
 
-                                                    echo '<tr>
-                                            <td> <img src="' . $fila['foto'] . '" class="rounded float-left" width="80" height="80" ></td>
-                                            <td>' . $fila['nombre'] . '</td>
-                                            <td>' . $fila['carrera'] . '</td>
-                                            <td>' . $fila['telefono'] . '</td>
-                
-                <td>
-               <a href="#" onclick="eliminarModal(' . $fila['id'] . ')" class="btn btn-danger btn-circle btn-sm" data-toggle="tooltip" data-placement="bottom" title="Eliminar">
-                <i class="fas fa-trash"></i>
-                </a>
-                <a href="docenteModificarVista.php?id=' . $fila['id'] . '" class="btn btn-info btn-circle btn-sm" data-toggle="tooltip" data-placement="bottom" title="Modificar">
-                <i class="fas fa-edit"></i>
-                </a>
-                <a href="#" onclick="asignarMateria(' . $fila['id'] . ')" class="btn btn-success  btn-circle btn-sm" data-toggle="tooltip" data-placement="bottom" title="Asignar materia">
-                <i class="fas fa-list-alt"></i>
-                </a>
-                <a href="#" onclick="asignarDisponibilidad(' . $fila['id'] . ')" class="btn btn-warning  btn-circle btn-sm" data-toggle="tooltip" data-placement="bottom" title="Asignar disponibilidad">
-                <i class="fas fa-clock"></i>
-                </a>
-                <a href="docentePDF.php?id=' . $fila['id'] . '" class="btn btn-secondary btn-circle btn-sm" data-toggle="tooltip" data-placement="bottom" title="Generar PDF">
-                <i class="fas fa-edit"></i>
-                </a>
-                </td>
-                </tr>'; 
-                                                }
-                                            }
-                                            ?>
+                                </tr>
+                            </thead>
 
-                                        </tbody>
 
-                                    </table>
-                                </div>
-                            </div>
-                                    
-                                    
+                            <tbody>
+                                <?php
+                                include_once "../modelo/eventosModelo.php";
+                                $eventosModelo = new eventosModelo();
+                                $result = $eventosModelo->mostrarTodos();
+                                $contador = 0;
+                                while ($fila = mysqli_fetch_array($result)) {
+
+                                    if ($fila != NULL) {
+                                        $contador++;
+
+
+                                        echo '<tr style="width: 680px">
+                                            <td style="width: 150px"> <img src="' . $fila['foto'] . '" class="rounded float-left" width="80" height="80" ></td>
+                                            <td style="width: 150px" >' . $fila['nombreEvento'] . '</td>
+                                            <td style="width: 363px" >' . $fila['descripcionEvento'] . '</td>                                  
+                                             
+                </tr>';
+                                    }
+                                }
+                                ?>
+                            </tbody>
+
+                        </table>
+                                        </div>
+                                    </div>
+
+
                                 </div> 
-                    }
+                            </div> 
+
+                        </div>
+
+
+
                         <!-- ESTE BOTON ES PARA LLEVAR A LA PARTE DE ABOUT -->
                         <!--                        <a class="btn btn-primary btn-xl" href="#about">Find Out More</a>-->
                     </div>

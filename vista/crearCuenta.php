@@ -45,7 +45,7 @@
                     <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
                         <div class="col-lg-6">
 
-                            <form action="../controlador/crearCuentaControlador.php" method='post' data-sb-form-api-token="API_TOKEN">
+                            <form action="../controlador/crearCuentaControlador.php" method='post' enctype="multipart/form-data" data-sb-form-api-token="API_TOKEN">
                                 <!-- NOMBRE-->
                                 <div class="form-floating mb-3">
                                     <input class="form-control" id="i1" name="c1" type="text" placeholder="Ingrese Nombre" data-sb-validations="required" />
@@ -73,7 +73,7 @@
                                     <div class="invalid-feedback" data-sb-feedback="password:required">Ingrese Contraseña.</div>
                                 </div>
                                   <div class="form-floating mb-3">                                
-                                <input type="file" id="i5" name="c5" >
+                                <input type="file" id="i5" name="foto" >
                                 <label for="i5"></label>
                                 <p class="help-block">Suba una imagen (opcional).</p>
 <!--                                <img src="img/anonymous.png" class="img-thumbnail previsualizar" width="100px">-->

@@ -9,21 +9,7 @@
 ?>
 
 <?php
-class Conexion
-{
-
-    public static function conectar()
-    {
-
-        $link = new PDO("mysql:host=localhost;dbname=eventos",
-            "root",
-            "");
-
-        $link->exec("set names utf8");
-
-        return $link;
-
-    }
-
-}
+$link = mysqli_connect("localhost", "root", "");
+mysqli_select_db($link, "eventos");
+$tildes = $link->query("SET NAMES 'utf8'"); //Para que se muestren las tildes correctamente
 ?>

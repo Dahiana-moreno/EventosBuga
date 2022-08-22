@@ -1,9 +1,8 @@
 <?php
 @session_start();
-if (isset($_SESSION['usuario'])) {   
+if (isset($_SESSION['usuario'])) {
     header("Location: vista2.php");
-} 
-
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +12,7 @@ if (isset($_SESSION['usuario'])) {
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>EVENTOS BUGA</title>
-        
+
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap Icons-->
@@ -25,6 +24,7 @@ if (isset($_SESSION['usuario'])) {
         <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="../recursos/css/styles.css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="../recursos/estilos.css"
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -46,114 +46,76 @@ if (isset($_SESSION['usuario'])) {
         <!-- Masthead-->
         <header class="masthead">
             <div class="container px-4 px-lg-5 h-100">
-                <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                <div class="row gx-4 gx-lg-5 h-10 align-items-center justify-content-center text-center">
                     <div class="col-lg-8 align-self-end">
-                        <h1 class="text-white font-weight-bold">PRUEBA</h1>
+                        <h3 class="text-white font-weight-bold">Eventos</h3>
                         <hr class="divider" />
                     </div>
                     <div class="col-lg-8 align-self-baseline">
 
                         <!-- PRUEBA DE COMO SE VEN LOS EVENTOS-->
 
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Nombre</th>                                              
-                                            <th>Imagen</th>
+                        <table class="table table-bordered table-hover table-fixed" >
+
+                            <thead>
+                                <tr style="width: 680px">
+                                    <th style="width: 150px">Imagen</th>                                              
+                                    <th style="width: 150px" >Evento</th>
+                                    <th style="width: 380px" >Descripción</th>
 
 
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Nombre</th>                                              
-                                            <th>Imagen</th>
-
-                                        </tr>
-                                    </tfoot>
-
-                                    <tbody>
-                                        <?php
-                                        include_once "docenteModelo.php";
-                                        $docenteModelo = new docenteModelo();
-                                        $result = $docenteModelo->mostrarTodos();
-                                        $contador = 0;
-                                        while ($fila = mysqli_fetch_array($result)) {
-
-                                            if ($fila != NULL) {
-                                                $contador++;
+                                </tr>
+                            </thead>
 
 
-                                                echo '<tr>
-                                            <td> <img src="' . $fila['foto'] . '" class="rounded float-left" width="80" height="80" ></td>
-                                            <td>' . $fila['nombre'] . '</td>
-                                            <td>' . $fila['carrera'] . '</td>
-                                            <td>' . $fila['telefono'] . '</td>
-                
-                <td>
-               <a href="#" onclick="eliminarModal(' . $fila['id'] . ')" class="btn btn-danger btn-circle btn-sm" data-toggle="tooltip" data-placement="bottom" title="Eliminar">
-                <i class="fas fa-trash"></i>
-                </a>
-                <a href="docenteModificarVista.php?id=' . $fila['id'] . '" class="btn btn-info btn-circle btn-sm" data-toggle="tooltip" data-placement="bottom" title="Modificar">
-                <i class="fas fa-edit"></i>
-                </a>
-                <a href="#" onclick="asignarMateria(' . $fila['id'] . ')" class="btn btn-success  btn-circle btn-sm" data-toggle="tooltip" data-placement="bottom" title="Asignar materia">
-                <i class="fas fa-list-alt"></i>
-                </a>
-                <a href="#" onclick="asignarDisponibilidad(' . $fila['id'] . ')" class="btn btn-warning  btn-circle btn-sm" data-toggle="tooltip" data-placement="bottom" title="Asignar disponibilidad">
-                <i class="fas fa-clock"></i>
-                </a>
-                <a href="docentePDF.php?id=' . $fila['id'] . '" class="btn btn-secondary btn-circle btn-sm" data-toggle="tooltip" data-placement="bottom" title="Generar PDF">
-                <i class="fas fa-edit"></i>
-                </a>
-                </td>
+                            <tbody>
+                                <?php
+                                include_once "../modelo/eventosModelo.php";
+                                $eventosModelo = new eventosModelo();
+                                $result = $eventosModelo->mostrarTodos();
+                                $contador = 0;
+                                while ($fila = mysqli_fetch_array($result)) {
+
+                                    if ($fila != NULL) {
+                                        $contador++;
+
+
+                                        echo '<tr style="width: 680px">
+                                            <td style="width: 150px"> <img src="' . $fila['foto'] . '" class="rounded float-left" width="80" height="80" ></td>
+                                            <td style="width: 150px" >' . $fila['nombreEvento'] . '</td>
+                                            <td style="width: 363px" >' . $fila['descripcionEvento'] . '</td>                                  
+                                             
                 </tr>';
-                                            }
-                                        }
-                                        ?>
+                                    }
+                                }
+                                ?>
+                            </tbody>
 
-                                    </tbody>
-
-                                </table>
-                            </div>
-                        </div>
-
-
-                    </div> 
-                    }
-                    <!-- ESTE BOTON ES PARA LLEVAR A LA PARTE DE ABOUT -->
-                    <!--                        <a class="btn btn-primary btn-xl" href="#about">Find Out More</a>-->
+                        </table>
+                       
+                        <!-- ESTE BOTON ES PARA LLEVAR A LA PARTE DE ABOUT -->
+                        <!--                        <a class="btn btn-primary btn-xl" href="#about">Find Out More</a>-->
+                    </div>
                 </div>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <!-- Footer-->
-    <footer class="bg-light py-5">
-        <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2022 - Hi school musical Company </div></div>
-    </footer>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- SimpleLightbox plugin JS-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="../recursos/js/scripts.js"></script>
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <!-- * *                               SB Forms JS                               * *-->
-    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-</body>
+        <!-- Footer-->
+        <footer class="bg-light py-5">
+            <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2022 - Hi school musical Company </div></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- SimpleLightbox plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="../recursos/js/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
 </html>
 
 
-//<?php
-@session_start();
-//include '../controlador/conexion.php';
-//if (isset($_SESSION['id_usuario'])) {
-//    header("Location: vista2.php");
-//    exit();
-//}
-//?>

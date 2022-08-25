@@ -55,7 +55,7 @@ include_once "../controlador/enrutamiento.php";
                     <div class="col-lg-8 align-self-baseline">
 
                         <!-- PRUEBA DE COMO SE VEN LOS EVENTOS-->
-                 <table class="table table-bordered table-hover table-fixed" >
+                 <table class="table table-bordered table-hover table-fixed" > 
 
                             <thead>
                                 <tr style="width: 680px">

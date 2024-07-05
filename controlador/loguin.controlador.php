@@ -9,12 +9,14 @@ $loguinModelo = new loguinModelo();
 $result = $loguinModelo->consultarUsuario($user, $password);
 $encontro = false;
 while ($fila = mysqli_fetch_array($result)) {
-
     if ($fila != NULL) {
         $encontro = true;
+
         $_SESSION['usuario'] = $fila['id'];
-        $_SESSION['nombreUsuario'] = $fila['user'];
+        $_SESSION['emailUsuario'] = $fila['email'];
         $_SESSION['foto'] = $fila['foto'];
+        $_SESSION['cliente'] = $fila['user'];
+
     }
 }
 if ($encontro = true) {

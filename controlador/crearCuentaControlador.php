@@ -9,12 +9,18 @@ $archivo = $_FILES["foto"]["tmp_name"];
 $destino = "../img/" . $foto;
 $move = move_uploaded_file($archivo, $destino);
 
+
+if(!$archivo){
+    $destino = "../img/default.png";
+}else {
+    $move = move_uploaded_file($archivo, $destino);
+
 if (!$move) {
     $codigo = $_FILES['foto']['error'];
     echo 'codigo error: ' . $codigo;
     echo 'la imagen  no pudo ser movida';
 } 
-    
+}
 
 if($nombre_usuario&&$email&&$telefono&&$password&&$destino){
     $pass = md5($password);

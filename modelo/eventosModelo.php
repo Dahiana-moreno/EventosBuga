@@ -5,30 +5,6 @@ include_once '../controlador/conexion.php';
 
 class eventosModelo {
 
-    function insertar($nombre, $carrera, $telefono, $documento, $fecha, $direccion, $foto) {
-        global $conexion;
-        $consulta = "INSERT INTO `eventos` (`id`, `nombre`, `carrera`, `telefono`, `documento`, `fecha`, `direccion`, `foto`) VALUES (NULL, '$nombre', '$carrera', '$telefono', '$documento', '$fecha', '$direccion','$foto');";
-        $query = mysqli_query($conexion, $consulta);
-    }
-
-    function eliminar($id) {
-
-        global $conexion;
-        $consulta = "DELETE FROM `eventos` WHERE `docentes`.`id` = $id";
-        $query = mysqli_query($conexion, $consulta);
-    }
-
-    function modificar($nombre, $carrera, $telefono, $documento, $fecha, $direccion, $id) {
-        global $conexion;
-        $consulta = "UPDATE `eventos` SET `nombre` = '$nombre', `carrera` = '$carrera', `telefono` = '$telefono', `documento` = '$documento', `fecha` = '$fecha', `direccion` = '$direccion' WHERE `docentes`.`id` = $id;";
-        $query = mysqli_query($conexion, $consulta);
-    }
-
-    function modificarFoto($foto, $id) {
-        global $conexion;
-        $consulta = "UPDATE `eventos` SET `foto` = '$foto' WHERE `docentes`.`id` = $id;";
-        $query = mysqli_query($conexion, $consulta);
-    }
 
     function mostrarTodos() {
         global $conexion;
@@ -58,6 +34,45 @@ class eventosModelo {
         return $id;
     }
 
+    function editar($idEvento, $nuevoNombre, $nuevaDescripcion, $nuevaFecha, $nuevaFoto){
+        global $conexion;
+        $consulta = "UPDATE `eventos` SET nombreEvento = ?, descripcionEvento = ?, fecha = ?, foto = ? WHERE id_eventos = ?";
+        $stmt = mysqli_prepare($conexion, $consulta);
+        mysqli_stmt_bind_param($stmt, "ssssi", $nuevoNombre, $nuevaDescripcion, $nuevaFecha, $nuevaFoto, $idEvento);
+        $resultado = mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+        return $resultado;
+    }
+    
+    
+    function eliminar($idEvento){
+        global $conexion;
+        $consulta = "DELETE FROM `eventos` WHERE id_eventos = $idEvento";
+
+        $query = mysqli_query($conexion, $consulta);
+        if($query) {
+            return true; // Devuelve true si la eliminación fue exitosa
+        } else {
+            return false; // Devuelve false si hubo un error en la eliminación
+        }
+
+    }
+
+
+   
+    function obtenerEventoporId($idEvento) {
+        global $conexion;
+        $consulta = "SELECT * FROM `eventos` WHERE id_eventos = $idEvento";
+        $query = mysqli_query($conexion, $consulta);
+        if($query && mysqli_num_rows($query) > 0) {
+            $evento = mysqli_fetch_assoc($query);
+            return $evento;
+        } else {
+            return null;
+        }
+    }   
+
 }
 
 ?>
+

@@ -45,14 +45,14 @@ include_once "../controlador/enrutamiento.php";
                 </div>                
             </div>
             <a class="" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['nombreUsuario']; ?></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['cliente']; ?></span>
                 <img class="img-profile rounded-circle" width="80" height="80" src="<?php echo $_SESSION['foto']; ?>">
             </a>
         </nav>
         <!-- FORMULARIO CREAR EVENTO-->
         <header class="masthead">
 <!--            <section class="page-section" id="contact">-->
-            <div class="container px-4 px-lg-5">
+           
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8 col-xl-6 text-center">
                         <h3 class="text-white font-weight-bold">Crear Evento</h3>
@@ -66,11 +66,10 @@ include_once "../controlador/enrutamiento.php";
                         <form action="../controlador/crearEventoControlador.php" method='post' data-sb-form-api-token="API_TOKEN" enctype="multipart/form-data">
 
                             <!-- NOMBRE EVENTO-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="i1" name="c1" type="text" placeholder="Ingrese Nombre del Evento" data-sb-validations="required" />
-                                <label for="i1">Nombre Evento</label>
+                                 <center><label for="i1">Nombre Evento</label></center>
+                                <input class="form-control" id="i1" name="c1" type="text" placeholder="Ingrese Nombre del Evento" data-sb-validations="required" /><br>
+                                
                                 <div class="invalid-feedback" data-sb-feedback="name:required">Ingrese Nombre del Evento.</div>
-                            </div>  
                             <!-- PARTE DE MENSAJE-->
 
                             <div class="form-floating mb-3">
@@ -105,7 +104,7 @@ include_once "../controlador/enrutamiento.php";
 
     <!-- Footer-->
     <footer class="bg-light py-5">
-        <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2022 - Hi school musical Company </div></div>
+        <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2023 - JDE - Juntos Desarrollando la Experiencia </div></div>
     </footer>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

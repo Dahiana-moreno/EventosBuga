@@ -60,7 +60,7 @@ if (isset($_SESSION['usuario'])) {
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                                             </div>
-                                            <input type="text" name="user" placeholder="Nombre">
+                                            <input type="text" name="user" placeholder="Email">
 
                                         </div>
                                         <div class="input-group form-group">
@@ -95,7 +95,7 @@ if (isset($_SESSION['usuario'])) {
 
     <!-- Footer-->
     <footer class="bg-light py-5">
-        <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2022 - Hi school musical Company </div></div>
+        <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2023 - JDE - Juntos Desarrollando la Experiencia</div></div>
     </footer>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

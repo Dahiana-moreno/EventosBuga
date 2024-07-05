@@ -9,30 +9,23 @@ if (isset($_SESSION['usuario'])) {
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
+     
         <title>EVENTOS BUGA</title>
 
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Bootstrap Icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
-        <!-- SimpleLightbox plugin CSS-->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
+
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="../recursos/css/styles.css" rel="stylesheet" />
-        <link rel="stylesheet" type="text/css" href="../recursos/estilos.css"
+        <link rel="stylesheet" type="text/css" href="../recursos/estilos.css">
     </head>
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="../index.php">EVENTOS BUGA</a>
-                <!-- LO NECESITO PARA MOSTRAR EL NOMBRE DEL USUARIO CUANDO INICIE SESION-->
-<!--                 Bienvenido: <a  href="logueo/perfil.php?id=<?= $_SESSION['usuario_id'] ?>"><strong><?= $_SESSION['usuario_nombre'] ?></strong></a><br />-->
+             
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
@@ -53,7 +46,7 @@ if (isset($_SESSION['usuario'])) {
                     </div>
                     <div class="col-lg-8 align-self-baseline">
 
-                        <!-- PRUEBA DE COMO SE VEN LOS EVENTOS-->
+                       
 
                         <table class="table table-bordered table-hover table-fixed" >
 
@@ -93,8 +86,6 @@ if (isset($_SESSION['usuario'])) {
 
                         </table>
                        
-                        <!-- ESTE BOTON ES PARA LLEVAR A LA PARTE DE ABOUT -->
-                        <!--                        <a class="btn btn-primary btn-xl" href="#about">Find Out More</a>-->
                     </div>
                 </div>
             </div>
@@ -102,19 +93,10 @@ if (isset($_SESSION['usuario'])) {
 
         <!-- Footer-->
         <footer class="bg-light py-5">
-            <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2022 - Hi school musical Company </div></div>
+            <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2023 - JDE - Juntos Desarrollando la Experiencia </div></div>
         </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- SimpleLightbox plugin JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
-        <!-- Core theme JS-->
+    
         <script src="../recursos/js/scripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
 </html>
 

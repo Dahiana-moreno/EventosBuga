@@ -10,18 +10,14 @@ include_once "../controlador/enrutamiento.php";
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>EVENTOS BUGA</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Bootstrap Icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+       
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
         <!-- SimpleLightbox plugin CSS-->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="../recursos/css/styles.css" rel="stylesheet" />
-        <link rel="stylesheet" type="text/css" href="../recursos/estilos.css"
+        <link rel="stylesheet" type="text/css" href="../recursos/estilos.css">
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -34,21 +30,24 @@ include_once "../controlador/enrutamiento.php";
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">                        
                         <li class="nav-item"><a class="nav-link" href="../vista/crearEvento.php">Crear Evento</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#portfolio">Mis Eventos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../vista/misEventos.php">Mis Eventos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../seguridad/vista2.php">Eventos</a></li>
                         <li class="nav-item"><a class="nav-link" href="../controlador/cerrarSesion.php">Cerrar Sesión</a></li>                        
                     </ul>                     
                 </div>                
             </div>
             <a class="" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['nombreUsuario']; ?></span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['cliente']; ?></span>
                 <img class="img-profile rounded-circle" width="80" height="80" src="<?php echo $_SESSION['foto']; ?>">
             </a>
         </nav>
+        
         <!-- Masthead-->
         <header class="masthead">
             <div class="container px-4 px-lg-5 h-10">
                 <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                     <div class="col-lg-8 align-self-end">
+                        <br>
                         <h3 class="text-white font-weight-bold">Mis Eventos</h3>
                         <hr class="divider" />
                     </div>
@@ -58,10 +57,11 @@ include_once "../controlador/enrutamiento.php";
                         <table class="table table-bordered table-hover table-fixed" >
 
                             <thead>
-                                <tr style="width: 680px">
+                                <tr style="width: 780px">
                                     <th style="width: 150px">Imagen</th>                                              
                                     <th style="width: 150px" >Evento</th>
                                     <th style="width: 380px" >Descripción</th>
+                                    <th style="width: 100px">Acciones</th>                                              
 
 
                                 </tr>
@@ -71,8 +71,9 @@ include_once "../controlador/enrutamiento.php";
                             <tbody>                              
                                 <?php
                                 if (isset($_SESSION["usuario"])) {
-                                    $usuario = $_SESSION["usuario"];
-                                }
+                                $usuario = $_SESSION["usuario"];
+                                //    echo $usuario;*/
+                             }
                                 include_once "../modelo/eventosModelo.php";
                                 $eventosModelo = new eventosModelo();
                                 $result = $eventosModelo->mostrarTodos();
@@ -83,10 +84,19 @@ include_once "../controlador/enrutamiento.php";
                                         $contador++;
 
                                         if ($fila['id_usuario'] == $usuario) {
-                                            echo '<tr style="width: 680px">
+
+                                            echo '<tr style="width: 763px">
                                             <td style="width: 150px"> <img src="' . $fila['foto'] . '" class="rounded float-left" width="80" height="80" ></td>
                                             <td style="width: 150px" >' . $fila['nombreEvento'] . '</td>
-                                            <td style="width: 363px" >' . $fila['descripcionEvento'] . '</td>                                                                                                                    
+                                            <td style="width: 363px" >' . $fila['descripcionEvento'] . '</td>     
+                                            <td style="width: 50px" >
+                                            <a href="../controlador/acciones.php?accion=eliminar&id=' . $fila['id_eventos'] . '">Eliminar</a>
+                                            </td>    
+                                            <td style="width: 50px" >
+                                            <a href="../controlador/acciones.php?accion=editar&id=' . $fila['id_eventos'] . '">Editar</a>
+                                            </td>    
+
+                                                                        
                                </tr>';
                                         }
                                     }
@@ -116,7 +126,7 @@ include_once "../controlador/enrutamiento.php";
 
 <!-- Footer-->
 <footer class="bg-light py-5">
-    <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2022 - Hi school musical Company </div></div>
+    <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2023 - JDE - Juntos Desarrollando la Experiencia</div></div>
 </footer>
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

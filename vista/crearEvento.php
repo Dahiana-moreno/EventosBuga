@@ -61,7 +61,8 @@ include_once "../controlador/enrutamiento.php";
                     </div>
                 </div>
                 <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
-                    <div class="col-lg-6">
+                   
+                
 
                         <form action="../controlador/crearEventoControlador.php" method='post' data-sb-form-api-token="API_TOKEN" enctype="multipart/form-data">
 
@@ -86,8 +87,12 @@ include_once "../controlador/enrutamiento.php";
                             </div>
                             <div class="form-floating mb-3">
                                 <label for=""></label>
-                                <input type="file" name="foto" id="" required>
+                                <input type="file" name="foto" id="">
                                 <p class="help-block">Suba una Imagen</p>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="i4" name="c4" type="text" placeholder="Ingrese fecha del evento">
+                                <label for="i4">Ingrese Url de Imagen</label>
                             </div>
 
                             <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>

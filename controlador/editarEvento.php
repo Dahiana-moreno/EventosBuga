@@ -25,9 +25,11 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             $archivo = $_FILES['nuevaFoto']['tmp_name'];
             $destino = "../img/" . $nuevaFoto;
 
-            // Verificar si se cargó una nueva imagen
-            if (!empty($nuevaFoto)) {
-                // Mover la imagen al directorio de destino
+            // Verificar si se proporcionó una URL de foto
+            if (!empty($_POST['fotoURL'])) {
+                $destino = $_POST['fotoURL'];
+            } elseif (!empty($nuevaFoto)) {
+                // Verificar si se cargó un archivo y moverlo al directorio de destino
                 $move = move_uploaded_file($archivo, $destino);
                 if (!$move) {
                     $codigo = $_FILES['nuevaFoto']['error'];
@@ -35,7 +37,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                     echo 'La imagen no pudo ser movida';
                 }
             } else {
-                // Si no se cargó una nueva imagen, conservar la imagen existente
+                // Conservar la imagen existente si no se cargó una nueva
                 $destino = $evento['foto'];
             }
 
@@ -121,6 +123,10 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                 <label for="nuevaFoto">Nueva Foto:</label>
                 <input type="file" name="nuevaFoto"><br>
                 
+
+                    <!-- Opción 2: Ingresar URL de imagen -->
+                    <label for="fotoURL">URL de la Foto (opcional):</label>
+                    <input type="text" id="fotoURL" name="fotoURL"><br>
                 <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
                 <!-- Botón de enviar -->
                 <div class="d-grid">
@@ -131,7 +137,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         </div>
             </header>
             <footer class="bg-light py-5">
-        <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2023 - JDE - Juntos Desarrollando la Experiencia </div></div>
+        <div class="container px-4 px-lg-5">< class="small text-center text-muted">Copyright &copy; 2023 - DayCode Todos los derechos reservados</div></div>
     </footer>
         </body>
         </html>

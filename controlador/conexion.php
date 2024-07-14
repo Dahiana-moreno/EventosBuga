@@ -1,7 +1,14 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php'; // Asegúrate de que la ruta es correcta
+
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/../');
 $dotenv->load();
+use Kreait\Firebase\Factory;
+use Kreait\Firebase\Storage;
+
+$firebaseConfig = require __DIR__ . '../../firebase/firebase_config.php';
+$factory = (new Factory)->withServiceAccount($firebaseConfig['credentials']);
+$storage = $factory->createStorage();
 
 $dbHost = $_ENV['DB_HOST'];
 $dbName = $_ENV['DB_NAME'];

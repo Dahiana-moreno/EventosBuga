@@ -1,7 +1,16 @@
 <?php
+use Dotenv\Dotenv;
+
+// Cargar variables de entorno
+$dotenv = Dotenv::createImmutable(__DIR__.'/../');
+$dotenv->load();
+
+$googleCredential = $_ENV['GOOGLE_APPLICATION_CREDENTIALS'];
+$idProject = $_ENV['ID_PROJECT'];
+$storageBucket = $_ENV['STORAGE_BUCKET'];
 return [
-  'projectId' => 'eventosbuga-e63b2',
-  'storageBucket' => 'gs://eventosbuga-e63b2.appspot.com',
-  'credentials' => __DIR__.'/eventosbuga-e63b2-firebase-adminsdk-gfi5w-a46ddeb20a.json'
+  'projectId' => $idProject,
+  'storageBucket' => $storageBucket,
+  'credentials' => __DIR__.$googleCredential
 ];
 

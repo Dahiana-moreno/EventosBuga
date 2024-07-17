@@ -6,8 +6,8 @@ $dotenv->load();
 use Kreait\Firebase\Factory;
 use Kreait\Firebase\Storage;
 
-$firebaseConfig = require __DIR__ . '../../firebase/firebase_config.php';
-$factory = (new Factory)->withServiceAccount($firebaseConfig['credentials']);
+$firebaseCdential = $_ENV['FIREBASE_CREDENTIALS'];
+$factory = (new Factory)->withServiceAccount(base64_decode($firebaseCdential));
 $storage = $factory->createStorage();
 
 $dbHost = $_ENV['DB_HOST'];

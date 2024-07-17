@@ -6,9 +6,40 @@ $password = !empty($_POST['c4']) ? $_POST['c4'] : '';
 
 $foto = $_FILES["foto"]["name"];
 $archivo = $_FILES["foto"]["tmp_name"];
-$destino = "../img/" . $foto;
-$move = move_uploaded_file($archivo, $destino);
+$destino = "";
+$url_imagen = '';
 
+include('conexion.php'); // Asegúrate de que esta línea está en la parte superior del script
+
+
+if(!empty($_FILES["foto"]["name"])) {
+   
+
+    $buckName = $_ENV['BUCKET_NAME'];
+    $urlStorage = $_ENV['URL_FIRESTORE'];
+    $dirStorage = $_ENV['CARPETA_STORAGE'];
+  
+    $bucket = $storage->getBucket();
+
+
+    $firebaseStoragePath = $dirStorage . $foto;
+
+ $bucket->upload(
+        fopen($archivo, 'r'),
+        [
+            'name' => $firebaseStoragePath,
+            
+        ]
+    );
+
+// Obtiene el objeto del archivo
+$storageObject = $bucket->object($firebaseStoragePath);
+$bucketName = $buckName;
+
+// Ahora puedes usar el token para construir la URL completa
+$imageUrl = $urlStorage . $bucketName . '/o/' . urlencode($firebaseStoragePath) . '?alt=media';
+
+$destino = $imageUrl;
 
 if(!$archivo){
     $destino = "../img/default.png";
@@ -20,6 +51,7 @@ if (!$move) {
     echo 'codigo error: ' . $codigo;
     echo 'la imagen  no pudo ser movida';
 } 
+}
 }
 
 if($nombre_usuario&&$email&&$telefono&&$password&&$destino){

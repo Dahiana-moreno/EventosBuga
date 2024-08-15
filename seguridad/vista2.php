@@ -21,7 +21,7 @@ include_once "../controlador/enrutamiento.php";
         <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="../recursos/css/styles.css" rel="stylesheet" />
-        <link rel="stylesheet" type="text/css" href="../recursos/estilos.css"
+        <link rel="stylesheet" type="text/css" href="../recursos/estilos.css">
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -35,7 +35,7 @@ include_once "../controlador/enrutamiento.php";
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">                        
                         <li class="nav-item"><a class="nav-link" href="../vista/crearEvento.php">Crear Evento</a></li>
                         <li class="nav-item"><a class="nav-link" href="../vista/misEventos.php">Mis Eventos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../controlador/cerrarSesion.php">Cerrar Sesión</a></li>                        
+                        <li class="nav-item"><a class="nav-link" href="../controlador/cerrarSesion.php">Cerrar Sesiónn</a></li>                        
                     </ul>                     
                 </div>                
             </div>

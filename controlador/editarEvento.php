@@ -23,20 +23,37 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             $nuevaFecha = $_POST['nuevaFecha'];
             $nuevaFoto = $_FILES['nuevaFoto']['name'];
             $archivo = $_FILES['nuevaFoto']['tmp_name'];
-            $destino = "../img/" . $nuevaFoto;
+            
+            
+        #    $destino = "../img/" . $nuevaFoto;
 
             // Verificar si se proporcionó una URL de foto
             if (!empty($_POST['fotoURL'])) {
                 $destino = $_POST['fotoURL'];
             } elseif (!empty($nuevaFoto)) {
-                // Verificar si se cargó un archivo y moverlo al directorio de destino
-                $move = move_uploaded_file($archivo, $destino);
-                if (!$move) {
-                    $codigo = $_FILES['nuevaFoto']['error'];
-                    echo 'Código de error: ' . $codigo;
-                    echo 'La imagen no pudo ser movida';
-                }
-            } else {
+                // Subir la nueva foto a Firebase Storage
+
+                $buckName = $_ENV['BUCKET_NAME'];
+                $urlStorage = $_ENV['URL_FIRESTORE'];
+                $dirStorage = $_ENV['CARPETA_STORAGE'];
+
+                $bucket = $storage->getBucket();
+                $bucketName = $buckName;
+
+                $firebaseStoragePath = $dirStorage . $nuevaFoto;
+            
+                $bucket->upload(
+                    fopen($archivo, 'r'),
+                    [
+                        'name' => $firebaseStoragePath,
+                    ]
+                );
+            
+                // Obtener la URL pública de la imagen subida
+                $storageObject = $bucket->object($firebaseStoragePath);
+            
+                $destino = $urlStorage . $bucketName . '/o/' . urlencode($firebaseStoragePath) . '?alt=media';
+             } else {
                 // Conservar la imagen existente si no se cargó una nueva
                 $destino = $evento['foto'];
             }

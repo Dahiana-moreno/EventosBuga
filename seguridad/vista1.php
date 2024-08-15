@@ -95,7 +95,9 @@ if (isset($_SESSION['usuario'])) {
         <footer class="bg-light py-5">
             <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2023 - DayCode Todos los derechos reservados</div></div>
         </footer>
-    
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
         <script src="../recursos/js/scripts.js"></script>
     </body>
 </html>

@@ -7163,6 +7163,7 @@ textarea.form-control-lg {
 
 .align-self-end {
   align-self: flex-end !important;
+  margin: 24px;
 }
 
 .align-self-center {
